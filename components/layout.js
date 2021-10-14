@@ -3,13 +3,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 export default function Layout({ children }) {
-  const [user, { mutate }] = useCurrentUser();
-  const handleLogout = async () => {
-    await fetch('/api/auth', {
-      method: 'DELETE',
-    });
-    mutate(null);
-  };
+  const user = null
+
   return (
     <>
       <style jsx global>

@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import slugify from 'slugify'
 import User from './userModel'
+import Review from './reviewModel'
 
 const tourSchema = new mongoose.Schema(
   {

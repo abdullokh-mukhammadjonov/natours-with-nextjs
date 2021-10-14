@@ -1,4 +1,4 @@
-import errorHandler from './errorHandler'
+import errorHandler from 'api-lib/utils/errorHandler'
 
 
 export const ncOpts = {

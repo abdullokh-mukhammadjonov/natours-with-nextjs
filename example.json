@@ -1,0 +1,6 @@
+M_ONG_OD_B_URI=m_o_n_go_d_b+s_r_v://abdullokh:333333clean@r_emoteclust_er.om2b6.m_ongod_b.net/tours?retryWrites=true&w=majority
+MO_NG_ODB_DB=tours
+
+JWT_SECRET=next_natours
+JWT_EXPIRES_IN=86400
+JWT_COOKIE_EXPIRES_IN=86400

@@ -1,4 +1,19 @@
 import mongoose from 'mongoose'
+import colors from 'colors'
+// process.on('unhandledRejection', err => {
+//   console.log('UNHANDLED REJECTION! Shutting down...'.red.underline);
+//   console.log(`err.name, err.message`.red.underline); // colors are more visual 
+//   server.close(() => {
+//     process.exit(1);
+//   });
+// });
+
+// process.on('SIGTERM', () => {
+//   console.log('SIGTERM RECEIVED. Shutting down gracefully'.red.underline);
+//   server.close(() => {
+//     console.log('Process terminated!'.red.underline);
+//   });
+// });
 
 const MONGODB_URI = process.env.MONGODB_URI
 
@@ -28,7 +43,7 @@ async function dbConnect() {
     const opts = {}
 
     cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
-      console.log("connected ()test")
+      console.log(colors.green("Successfully connected to the database."))
       return mongoose
     })
   }

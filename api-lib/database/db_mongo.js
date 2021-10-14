@@ -86,3 +86,16 @@ export default clientPromise
 // }
 
 
+///  usage
+// import dbConnect from 'api-lib/database/db_mongo';
+
+// export default async (req, res) => {
+//   const client = await dbConnect
+//   const movies = await client.db('natours')
+//     .collection("tours")
+//     .find({_id: '5c88fa8cf4afda39709c295a'})
+//     // .sort({ metacritic: -1 })
+//     // .limit(20)
+//     // .toArray();
+//   res.json(movies);
+// }

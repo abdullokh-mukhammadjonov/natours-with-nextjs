@@ -1,224 +1,164 @@
-import Head from 'next/head'
+import React from "react";
+import axios from "axios";
 
+class CheckBox extends React.Component {
+  constructor(props) {
+    super(props);
 
-export default function Home() {
-  const isConnected = true
-  return (
-    <div className="container">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    this.state = {
+      checkBoxChecked: false,
+    };
+    this.handleCheckBoxClick = this.handleCheckBoxClick.bind(this);
+  }
+  handleCheckBoxClick = () => {
+    this.setState({ checkBoxChecked: !this.state.checkBoxChecked });
+  };
 
-      <main>
-        <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js with MongoDB!</a>
-        </h1>
-
-        {isConnected ? (
-          <h2 className="subtitle">You are connected to MongoDB</h2>
-        ) : (
-          <h2 className="subtitle">
-            You are NOT connected to MongoDB. Check the <code>README.md</code>{' '}
-            for instructions.
-          </h2>
-        )}
-
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
-
-        <div className="grid">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className="card">
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className="card"
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="card"
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+  render() {
+    return (
+      <div>
+        <div
+          className="form-check form-check-inline"
+          style={{ paddingTop: "20px" }}
         >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
-        </a>
-      </footer>
-
-      <style jsx>{`
-        .container {
-          min-height: 100vh;
-          padding: 0 0.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        main {
-          padding: 5rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer img {
-          margin-left: 0.5rem;
-        }
-
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        a {
-          color: inherit;
-          text-decoration: none;
-        }
-
-        .title a {
-          color: #0070f3;
-          text-decoration: none;
-        }
-
-        .title a:hover,
-        .title a:focus,
-        .title a:active {
-          text-decoration: underline;
-        }
-
-        .title {
-          margin: 0;
-          line-height: 1.15;
-          font-size: 4rem;
-        }
-
-        .title,
-        .description {
-          text-align: center;
-        }
-
-        .subtitle {
-          font-size: 2rem;
-        }
-
-        .description {
-          line-height: 1.5;
-          font-size: 1.5rem;
-        }
-
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-        }
-
-        .grid {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-wrap: wrap;
-
-          max-width: 800px;
-          margin-top: 3rem;
-        }
-
-        .card {
-          margin: 1rem;
-          flex-basis: 45%;
-          padding: 1.5rem;
-          text-align: left;
-          color: inherit;
-          text-decoration: none;
-          border: 1px solid #eaeaea;
-          border-radius: 10px;
-          transition: color 0.15s ease, border-color 0.15s ease;
-        }
-
-        .card:hover,
-        .card:focus,
-        .card:active {
-          color: #0070f3;
-          border-color: #0070f3;
-        }
-
-        .card h3 {
-          margin: 0 0 1rem 0;
-          font-size: 1.5rem;
-        }
-
-        .card p {
-          margin: 0;
-          font-size: 1.25rem;
-          line-height: 1.5;
-        }
-
-        .logo {
-          height: 1em;
-        }
-
-        @media (max-width: 600px) {
-          .grid {
-            width: 100%;
-            flex-direction: column;
-          }
-        }
-      `}</style>
-
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
-    </div>
-  )
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="inlineCheckbox1"
+            value="option1"
+            onChange={this.handleCheckBoxClick}
+          />
+          <label className="form-check-label" htmlFor="inlineCheckbox1">
+            Daily
+          </label>
+        </div>
+        <div className="form-check form-check-inline">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="inlineCheckbox2"
+            value="option2"
+            onChange={this.handleCheckBoxClick}
+          />
+          <label className="form-check-label" htmlFor="inlineCheckbox2">
+            Hourly
+          </label>
+        </div>
+      </div>
+    );
+  }
 }
+
+// export default CheckBox;
+
+
+// import React from "react";
+// import CheckBox from "../checkBox/checkBox";
+
+class Forms extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      emails: "",
+      alerts: "",
+      submit: this.props.value,
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleAlertButtonClick = () => {
+    const data = this.state.alerts;
+
+    // axios.post("/test", data);
+    if (this.state.submit === true) {
+      console.log(data);
+    }
+  };
+
+  handleSaveButtonClick = () => {
+    const data = this.state.alerts;
+
+    // axios.post("/save", data);
+    if (this.state.submit === true) {
+      console.log(data);
+    }
+  };
+
+  handleSaveChange = (e) => {
+    let { name, value } = e.target;
+    this.setState({ ...this.state, [name]: value });
+    console.log(this.state)
+  };
+
+  handleSubmit = (event) => {
+    let submit = this.state.submit;
+    if (submit !== true) {
+      alert("This form is invalid please try again!");
+      event.preventDefault();
+    } else {
+      alert("Your form has been succesfully submitted");
+    }
+  };
+
+  render() {
+    //const { checkCheckBox } = this.props;
+
+    return (
+      <div>
+        {" "}
+        <form className="needs-validation" onSubmit={this.handleSubmit}>
+          <div className="form-group" style={{ paddingTop: "40px" }}>
+            <label htmlFor="alertInput"> Alert Message</label>
+            <input
+              name="alerts"
+              type="text"
+              className="form-control"
+              id="alertInput"
+              placeholder="Alert Message"
+              onChange={this.handleSaveChange}
+              ref={(input) => this.input}
+              required
+            />
+          </div>
+
+          <CheckBox required />
+
+          <div className="form-group" style={{ paddingTop: "30px" }}>
+            <label htmlFor="emailInput">Email Recipients</label>
+            <input
+              name="emails"
+              type="email"
+              multiple
+              className="form-control"
+              id="emailInput"
+              placeholder="Email Recipients"
+              required
+              onChange={this.handleSaveChange}
+            />
+          </div>
+          <div
+            className="d-grid gap-2 d-md-flex justify-content-md-end"
+            style={{ paddingTop: "25px" }}
+          >
+            <button
+              className="btn btn-primary me-md-2"
+              type="submit"
+              onClick={this.handleAlertButtonClick}
+            >
+              Test Alert
+            </button>
+            <button
+              className="btn btn-primary"
+              type="submit"
+              onClick={this.handleSaveButtonClick}
+            >
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+    );
+  }
+}
+
+export default Forms;
